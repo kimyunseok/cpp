@@ -13,7 +13,10 @@
 </p>
 
 
-#2020 - 여름 (Google Play Store Alamemo 어플리케이션)
-
+#2020 - 여름 
+(Google Play Store Alamemo 어플리케이션)<br>
+<img width="360" src="https://user-images.githubusercontent.com/63734277/103010966-8126d880-457c-11eb-9abf-6781e4b5a9d3.png">&nbsp;&nbsp;&nbsp;&nbsp;
+<p>
+  </p>
 #2020 - 2
 웹 프로젝트 - 쇼핑몰(자바)
