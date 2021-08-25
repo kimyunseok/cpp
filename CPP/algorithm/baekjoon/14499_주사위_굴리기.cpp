@@ -21,10 +21,10 @@ int moveDirection;
 
 pair<int, int> movePoint[5]{
     {0, 0},
-    {0, -1},
     {0, 1},
-    {+1, 0},
-    {-1, 0}
+    {0, -1},
+    {-1, 0},
+    {+1, 0}
 };
 
 // 바닥 기준. 방향에 따라 틀려야함. 이전에 온 것과 어느 방향을 통해서 왔는지에 따라 달라짐.
@@ -96,11 +96,8 @@ int main() {
 
     cin >> height >> width >> diceYPoint >> diceXPoint >> cmdCnt;
 
-    diceYPoint = height - diceYPoint - 1;
-    diceXPoint = width - diceXPoint - 1;
-
-    for (int i = height - 1; i >= 0; i--) {
-        for (int j = width - 1; j >= 0; j--) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
             cin >> board[i][j];
         }
     }
