@@ -21,29 +21,11 @@ public:
     }
 };
 
-struct comp {
-    bool operator()(Point p1, Point p2) {
-        if (p1.time > p2.time) {
-            return true;
-        }
-        else if (p1.time == p2.time) {
-            if (p1.type > p2.type) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }
-};
-
 int width, height;
 char maze[1002][1002];
 bool visit[1002][1002][2];
-priority_queue< Point, vector<Point>, comp > pq;
+queue<Point> fireQ;
+int jihoonY, jihoonX;
 pair<int, int> direction[4] = {
     {-1, 0},
     {0, 1},
@@ -53,13 +35,20 @@ pair<int, int> direction[4] = {
 int ans;
 
 void bfs() {
-    while (!pq.empty()) {
-        int curTime = pq.top().time;
-        int curType = pq.top().type;
-        int curY = pq.top().y;
-        int curX = pq.top().x;
+    queue<Point> q;
+    while (!fireQ.empty()) {
+        Point p = fireQ.front();
+        fireQ.pop();
+        q.push(p);
+    }
+    q.push(Point(0, 'J', jihoonY, jihoonX));
+    while (!q.empty()) {
+        int curTime = q.front().time;
+        int curType = q.front().type;
+        int curY = q.front().y;
+        int curX = q.front().x;
         int curTypeIdx = (curType == 'J') ? 0 : 1;
-        pq.pop();
+        q.pop();
 
         if (curType == 'J' && maze[curY][curX] == 'F') { continue; }
 
@@ -81,10 +70,11 @@ void bfs() {
             int nxtTime = curTime + 1;
             int nxtY = curY + dir.first;
             int nxtX = curX + dir.second;
+
             if (nxtY < 1 || nxtY > height || nxtX < 1 || nxtX > width) { continue; }
             if (visit[nxtY][nxtX][curTypeIdx] || maze[nxtY][nxtX] == '#' || maze[nxtY][nxtX] == 'F') { continue; }
             visit[nxtY][nxtX][curTypeIdx] = true;
-            pq.push(Point(nxtTime, curType, nxtY, nxtX));
+            q.push(Point(nxtTime, curType, nxtY, nxtX));
         }
     }
 }
@@ -99,10 +89,14 @@ int main() {
     for (int i = 1; i <= height; i++) {
         for (int j = 1; j <= width; j++) {
             cin >> maze[i][j];
-            if (maze[i][j] == 'J' || maze[i][j] == 'F') {
-                pq.push(Point(0, maze[i][j], i, j));
-                int curTypeIdx = (maze[i][j] == 'J') ? 0 : 1;
-                visit[i][j][curTypeIdx] = true;
+            if (maze[i][j] == 'J') {
+                jihoonY = i;
+                jihoonX = j;
+                visit[i][j][0] = true;
+            }
+            else if (maze[i][j] == 'F') {
+                fireQ.push(Point(0, maze[i][j], i, j));
+                visit[i][j][1] = true;
             }
         }
     }
