@@ -22,15 +22,16 @@ int main() {
     for (int i = 1; i <= widthHeight; i++) {
         for (int j = 1; j <= widthHeight; j++) {
             cin >> arr[i][j];
-            if (i == 1 && j == 1) {
-                dp[i][j] = arr[i][j];
-            }
-            else if (j == 1) {
-                dp[i][j] = dp[i - 1][j] + arr[i][j];
-            }
-            else {
-                dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + arr[i][j];
-            }
+            //if (i == 1 && j == 1) {
+            //    dp[i][j] = arr[i][j];
+            //}
+            //else if (j == 1) {
+            //    dp[i][j] = dp[i - 1][j] + arr[i][j];
+            //}
+            //else {
+            //    dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + arr[i][j];
+            //}
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + arr[i][j];
         }
     }
 
