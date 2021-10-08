@@ -10,21 +10,10 @@ using namespace std;
 
 int nodeCnt;
 vector<pair<int, int>> adjList[10001];
-bool visit[10001];
 vector<int> childDistanceVec[10001];
 int ans;
 
 int dfs(int nodeNum) {
-
-	if (visit[nodeNum]) {
-		if (childDistanceVec[nodeNum].empty()) {
-			return 0;
-		}
-		int bigIdx = childDistanceVec[nodeNum].size() - 1;
-		return childDistanceVec[nodeNum][bigIdx];
-	}
-
-	visit[nodeNum] = true;
 
 	for (pair<int, int> p : adjList[nodeNum]) {
 		int nextNodeNum = p.first;
