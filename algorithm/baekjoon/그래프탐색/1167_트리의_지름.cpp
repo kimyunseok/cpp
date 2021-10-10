@@ -66,11 +66,13 @@ int main() {
 		}
 	}
 
-	for (int i = 1; i <= 100000; i++) {
-		if (!visit[i]) {
-			dfs(i);
-		}
+for (int i = 1; i <= 100000; i++) {
+	if (!visit[i] && adjVec[i].size() > 0) {
+		dfs(i);
+		break;
 	}
+}
+ 
 
 	cout << ans;
 
