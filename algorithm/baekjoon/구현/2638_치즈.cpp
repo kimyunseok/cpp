@@ -12,7 +12,6 @@ int height, width;
 int board[101][101];
 int externalAdjCnt[101][101];
 queue<pair<int, int>> externalVisitQ;
-queue<pair<int, int>> meltCheeseQ;
 vector<pair<int, int>> cheeseVec;
 bool visit[101][101];
 pair<int, int> direction[4] = {
@@ -66,7 +65,6 @@ void findMeltCheese() {
 		int r = cheeseVec[i].first;
 		int c = cheeseVec[i].second;
 		if (externalAdjCnt[r][c] >= 2) {
-			meltCheeseQ.push({ r, c });
 			cheeseVec.erase(cheeseVec.begin() + i);
 			board[r][c] = 0;
 			i--;
@@ -75,18 +73,9 @@ void findMeltCheese() {
 	}
 }
 
-void melt() {
-	while (!meltCheeseQ.empty()) {
-		int r = meltCheeseQ.front().first;
-		int c = meltCheeseQ.front().second;
-		meltCheeseQ.pop();
-	}
-}
-
 void go(int hr) {
 	bfs();
 	findMeltCheese();
-	melt();
 	if (cheeseVec.size() != 0) {
 		go(hr + 1);
 	}
