@@ -7,6 +7,7 @@
 #include <deque>
 
 using namespace std;
+deque<int> deq;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -16,7 +17,6 @@ int main() {
     int tc;
     cin >> tc;
     while (tc--) {
-        deque<int> deq;
         int numCnt;
         string cmd;
         string numArrStr;
@@ -24,23 +24,14 @@ int main() {
         bool errorOccur = false;
         cin >> cmd;
         cin >> numCnt;
+        cin >> numArrStr;
 
         int curNum = -1;
-        while (true) {
-            char input;
-            cin >> input;
-
-            if (input == ']') { 
-                if (curNum != -1) {
-                    deq.push_back(curNum);
-                }
-                break; 
-            }
-
-            if (input >= '0' && input <= '9') {
+        for (int i = 1; i < numArrStr.length(); i++) {
+            if (numArrStr[i] >= '0' && numArrStr[i] <= '9') {
                 if (curNum == -1) { curNum = 0; }
                 curNum *= 10;
-                curNum += (input - '0');
+                curNum += (numArrStr[i] - '0');
             }
             else if (curNum != -1) {
                 deq.push_back(curNum);
