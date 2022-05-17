@@ -1,7 +1,7 @@
 /*
-* 백준 {문제번호} {문제이름}
-* https://www.acmicpc.net/problem/{문제번호}
-* 문제 유형
+* 백준 3055번 탈출
+* https://www.acmicpc.net/problem/3055
+* 그래프 탐색 - 너비 우선 탐색(BFS)
 */
 #include <iostream>
 #include <queue>
@@ -83,7 +83,8 @@ int main() {
 			if (map[i][j] == '*') {
 				waterQ[0].push({ i, j });
 				waterVisit[i][j] = true;
-			} else if (map[i][j] == 'S') {
+			}
+			else if (map[i][j] == 'S') {
 				dochiQ.push({ { i, j }, 0 });
 				map[i][j] = '.';
 				dochiVisit[i][j] = true;
@@ -94,7 +95,7 @@ int main() {
 			}
 		}
 	}
-	
+
 	findMinTime();
 
 	if (!canFindTime) {
