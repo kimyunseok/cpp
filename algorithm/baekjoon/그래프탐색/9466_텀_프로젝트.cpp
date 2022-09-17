@@ -34,9 +34,9 @@ int checkCycleCnt(int curNum, int curCnt) {
 
 	if (curNum == nxtNum) return 1;
 
-	visit[curNum] = true;
+	visitForResult[curNum] = true;
 
-	if (!visit[nxtNum]) {
+	if (!visitForResult[nxtNum]) {
 		return checkCycleCnt(nxtNum, curCnt + 1);
 	}
 	else {
@@ -68,14 +68,9 @@ int main() {
 		}
 
 		for (int i = 1; i <= studentCnt; i++) {
-			visit[i] = false;
-		}
-
-		for (int i = 1; i <= studentCnt; i++) {
 			int num = studentLast[i];
 			if (!visitForResult[num]) {
 				visitForResult[num] = true;
-				visit[num] = true;
 				result -= checkCycleCnt(num, 1);
 			}
 		}
